@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
+  resources :saveplaylists do
+    collection {post :import}
+  end
+
   namespace :api do
     namespace :v1 do
       post "/create" , to: 'saveplaylistupdates#create'

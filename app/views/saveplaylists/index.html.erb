@@ -1,0 +1,64 @@
+<%= flash[:notice] %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="col-md-offset-1">
+      <h1>
+        The Top 10 youtube Playlist
+      </h1>
+      <p>
+        Insert Country, city or region to know what's trending
+      </p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="col-md-offset-1">
+      <h1>
+        Saved playlists
+      </h1>
+      <%= form_tag import_saveplaylists_path, multipart: true do %>
+        <%= file_field_tag :file %>
+    </div>
+  </div>
+</div>
+<!-- submit buttons -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="col-md-offset-1">
+      <input type="text" id="insert_query">
+      <button type="button" onclick="requestLocation();return false;">
+        search location
+      </button>
+      <button type="button" onclick="savePlaylist(); return false;">
+        Save Playlist
+      </button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="col-md-offset-1">
+        <%= submit_tag "Import CSV" %>
+      <%end%>
+    </div>
+  </div>
+</div>
+<br> 
+<!-- result row -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="col-md-offset-1">
+      <div id="result">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="col-md-offset-1">
+      <div id="saved_playlist">
+        <%@playlist.each do |p|%>
+          <p>
+            <%=p.name%>
+          </p>
+          <img src="<%=p.url%>">
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

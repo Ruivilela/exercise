@@ -68,6 +68,9 @@ function saveInfo(element){
   my_info.saveplaylist.name = element.firstChild.textContent;
   my_info.saveplaylist.url = element.childNodes[1].currentSrc;
   sendDb(my_info);
+  // appends the results to saved playlist
+  document.getElementById('saved_playlist').innerHTML +=
+  appendResults(element.childNodes[1].currentSrc , element.firstChild.textContent);
 }
 // using fetch
 function sendDb(info){
