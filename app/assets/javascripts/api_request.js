@@ -64,19 +64,28 @@ function savePlaylist(){
 }
 // save the info that is send to the database
 function saveInfo(element){
-  var my_info = {};
-  my_info.name = element.firstChild.textContent;
-  my_info.url = element.childNodes[1].currentSrc;
+  var my_info = {saveplaylist:{}};
+  my_info.saveplaylist.name = element.firstChild.textContent;
+  my_info.saveplaylist.url = element.childNodes[1].currentSrc;
   sendDb(my_info);
 }
-// send to db
-function sendDb(info) {
-  var xhr =  new XMLHttpRequest();
-  xhr.open("POST",'/api/v1/create');
-  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhr.send(JSON.stringify({
-      name: "teste",
-      url: "also teste"
-    })
-  );
+// using fetch
+function sendDb(info){
+  fetch(
+    '/api/v1/create', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
+      body: JSON.stringify(info)
+    }
+  )
 }
+// send to db using native javascript
+// function sendDb2(info) {
+//   var xhr =  new XMLHttpRequest();
+//   xhr.open("POST",'/api/v1/create');
+//   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+//   xhr.send(JSON.stringify(info));
+// }
