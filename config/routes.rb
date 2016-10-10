@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'saveplaylists#index'
+  
   resources :saveplaylists do
     collection {post :import}
   end
